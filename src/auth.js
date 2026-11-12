@@ -93,6 +93,7 @@ async function notifyAdministrator(inputs) {
 
 function showRegistrationResultModal(hasSession) {
     if (hasSession) {
+        vibrateOnSuccess();
         showNoticeModal('check', 'Good Job! Your account has been created successfully.', 'Continue', showLoginSection);
         return;
     }
@@ -119,6 +120,7 @@ async function handleRegistration() {
         showRegistrationResultModal(!!result.data.session);
     } catch (error) {
         console.error('Registration error:', error);
+        vibrateOnError();
         showError(getFriendlyAuthError(error, 'Registration failed. Please try again.'), 'registration-message', 'registration-button');
     } finally {
         button.disabled = false;
@@ -146,6 +148,7 @@ async function handleLogin() {
     } catch (error) {
         console.error('Login error:', error);
         showLoginSection();
+        vibrateOnError();
         showError(getFriendlyAuthError(error, 'Login failed. Check your credentials.'), 'login-message', 'login-button');
     }
 }
@@ -155,15 +158,18 @@ async function handleForgotPassword() {
     const email = getInputs('login-form').email;
 
     if (!isValidEmail(email)) {
+        vibrateOnError();
         showError('Enter your email above first, then press Forgot Password.', 'login-message', 'login-button');
         return;
     }
 
     try {
         await sendPasswordResetEmail(email);
+        vibrateOnSuccess();
         showNoticeModal('exclamation', 'A password reset link has been sent to your email account.', 'Continue');
     } catch (error) {
         console.error('Password reset error:', error);
+        vibrateOnError();
         showError(getFriendlyAuthError(error, 'Could not send the reset link. Please try again.'), 'login-message', 'login-button');
     }
 }
@@ -181,6 +187,7 @@ async function finishPasswordChange() {
 }
 
 function showPasswordChangedModal() {
+    vibrateOnSuccess();
     showNoticeModal('check', 'Good Job! Your password has been changed successfully.', 'Go to Login', finishPasswordChange);
 }
 
@@ -206,6 +213,7 @@ async function handleChangePassword() {
     const problem = getChangePasswordProblem(inputs);
 
     if (problem) {
+        vibrateOnError();
         showError(problem, 'change-password-message', 'change-password-button');
         return;
     }
@@ -226,12 +234,14 @@ async function handleChangePassword() {
 async function handleLogout() {
     try {
         await playLoadingScreen('Logging out', signOutOfSupabase, 'Logged out successfully', playLogoutSound);
+        vibrateOnSuccess();
         showLoginSection();
     } catch (error) {
         console.error('Logout error:', error);
         switchScreen('dashboard', '.screen');
         refreshCarousel();
         showNoticeModal('exclamation', getFriendlyAuthError(error, 'Could not log out. Please try again.'), 'Continue');
+        vibrateOnError();
         playErrorFeedback(getEl('logout-button'));
     }
 }
