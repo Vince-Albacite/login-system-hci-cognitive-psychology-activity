@@ -95,6 +95,7 @@ function showRegistrationResultModal(hasSession) {
     if (hasSession) {
         vibrateOnSuccess();
         showNoticeModal('check', 'Good Job! Your account has been created successfully.', 'Continue', showLoginSection);
+        vibrateOnSuccess();
         return;
     }
     vibrateOnSuccess();
