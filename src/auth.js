@@ -139,10 +139,10 @@ async function handleLogin() {
 
     try {
         const result = await playLoadingScreen('Logging in', function () {
-            vibrateOnSuccess();
             return signInWithPassword(inputs);
         }, 'Logged in successfully', playSuccessSound);
-
+        
+        vibrateOnSuccess();
         clearForm('login-form');
         showDashboard(result.data.user);
     } catch (error) {
