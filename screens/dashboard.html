@@ -1,0 +1,24 @@
+<section id="dashboard" class="screen">
+  <div class="spacer"></div>
+  <div class="dashboard-header">
+    <h1 id="dashboard-welcome" class="page-title">Welcome, User!</h1>
+    <button type="button" id="logout-button" class="btn btn-secondary btn-logout" onclick="openLogoutConfirm()">Log Out</button>
+  </div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+  <div class="dashboard-card">
+    <h2 class="dashboard-title">Cognitive Psychology Concepts considered in the Interactive System&rsquo;s interface design:</h2>
+    <div class="spacer"></div>
+    <p class="hint">Press the arrows or Swipe horizontally to navigate</p>
+
+    <div class="carousel">
+      <button type="button" id="carousel-prev" class="carousel-arrow" aria-label="Previous concept" onclick="showPreviousConcept()">
+        <svg aria-hidden="true"><use href="#icon-arrow-left"></use></svg>
+      </button>
+      <div id="carousel-view" class="carousel-view"><div id="carousel-track" class="carousel-track"></div></div>
+      <button type="button" id="carousel-next" class="carousel-arrow" aria-label="Next concept" onclick="showNextConcept()">
+        <svg aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+      </button>
+    </div>
+  </div>
+</section>

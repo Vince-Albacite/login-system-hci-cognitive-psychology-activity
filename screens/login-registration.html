@@ -1,0 +1,152 @@
+<main id="login-registration" class="screen">
+  <header class="page-header">
+    <h1 class="page-title">CogPsych Concepts:<br />Login/Registration</h1>
+    <p class="page-subtitle">
+      Log in to see the design concepts utilized by this GUI!
+    </p>
+  </header>
+  <div class="spacer"></div>
+  <section id="login-section" class="form-section on">
+    <form id="login-form" class="card" novalidate>
+      <h2 class="card-title">Login</h2>
+
+      <label for="login-email">Email Address</label>
+      <input
+        type="email"
+        id="login-email"
+        name="email"
+        placeholder="juan.dela.doe@gmail.com"
+        autocomplete="email"
+      />
+
+      <div class="spacer"></div>
+
+      <label for="login-password">Password</label>
+      <div class="password-field">
+        <input
+          type="password"
+          id="login-password"
+          name="password"
+          class="password-input"
+          placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+          autocomplete="current-password"
+        />
+        <button
+          type="button"
+          class="eye-toggle"
+          aria-label="Show password"
+          onclick="togglePasswordVisibility('login-form')"
+        >
+          <svg aria-hidden="true"><use href="#icon-eye-off"></use></svg>
+        </button>
+      </div>
+
+      <div class="form-row-end">
+        <button type="button" class="link" onclick="handleForgotPassword()">
+          Forgot Password?
+        </button>
+      </div>
+
+      <p id="login-message" class="message" role="alert"></p>
+      <button
+        type="button"
+        id="login-button"
+        class="btn btn-primary"
+        onclick="handleLogin()"
+      >
+        Log In
+      </button>
+
+      <p class="form-switch">
+        No account yet?
+        <button type="button" class="link" onclick="showRegistrationSection()">
+          Create an account
+        </button>
+      </p>
+    </form>
+  </section>
+
+  <section id="registration-section" class="form-section">
+    <form id="registration-form" class="card" novalidate>
+      <h2 class="card-title">Registration</h2>
+
+      <label for="registration-username">Username</label>
+      <input
+        type="text"
+        id="registration-username"
+        name="username"
+        placeholder="Juan Doe"
+        autocomplete="username"
+      />
+
+      <div class="spacer-small"></div>
+
+      <label for="registration-email">Email Address</label>
+      <input
+        type="email"
+        id="registration-email"
+        name="email"
+        placeholder="juan.dela.doe@gmail.com"
+        autocomplete="email"
+      />
+
+      <div class="spacer-small"></div>
+
+      <label for="registration-password">Password</label>
+      <input
+        type="password"
+        id="registration-password"
+        name="password"
+        class="password-input"
+        placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+        autocomplete="new-password"
+      />
+
+      <div class="meter idle">
+        <div class="meter-track"><div class="meter-fill"></div></div>
+        <span class="meter-label">Strength</span>
+      </div>
+
+      <div class="spacer-small"></div>
+
+      <label for="registration-confirm-password">Confirm Password</label>
+      <div class="password-field">
+        <input
+          type="password"
+          id="registration-confirm-password"
+          name="confirm-password"
+          class="password-input"
+          placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+          autocomplete="new-password"
+        />
+        <button
+          type="button"
+          class="eye-toggle"
+          aria-label="Show password"
+          onclick="togglePasswordVisibility('registration-form')"
+        >
+          <svg aria-hidden="true"><use href="#icon-eye-off"></use></svg>
+        </button>
+      </div>
+
+      <p id="registration-message" class="message" role="alert"></p>
+      <button
+        type="button"
+        id="registration-button"
+        class="btn btn-primary"
+        onclick="handleRegistration()"
+      >
+        Register
+      </button>
+
+      <p class="form-switch">
+        Already have an account?
+        <button type="button" class="link" onclick="showLoginSection()">
+          Sign in
+        </button>
+      </p>
+    </form>
+  </section>
+</main>
+<noscript>Don't delete body</noscript>
+<body></body>
