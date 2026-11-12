@@ -97,6 +97,7 @@ function showRegistrationResultModal(hasSession) {
         showNoticeModal('check', 'Good Job! Your account has been created successfully.', 'Continue', showLoginSection);
         return;
     }
+    vibrateOnSuccess();
     showNoticeModal('exclamation', 'An email verification link has been sent to your email account.', 'Continue', showLoginSection);
 }
 
