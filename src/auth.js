@@ -100,6 +100,7 @@ function showRegistrationResultModal(hasSession) {
     }
     vibrateOnSuccess();
     showNoticeModal('exclamation', 'An email verification link has been sent to your email account.', 'Continue', showLoginSection);
+    vibrateOnSuccess();
 }
 
 async function handleRegistration() {
@@ -124,6 +125,7 @@ async function handleRegistration() {
         console.error('Registration error:', error);
         vibrateOnError();
         showError(getFriendlyAuthError(error, 'Registration failed. Please try again.'), 'registration-message', 'registration-button');
+        vibrateOnError();
     } finally {
         button.disabled = false;
     }
@@ -162,6 +164,7 @@ async function handleForgotPassword() {
     if (!isValidEmail(email)) {
         vibrateOnError();
         showError('Enter your email above first, then press Forgot Password.', 'login-message', 'login-button');
+        vibrateOnError();
         return;
     }
 
@@ -169,10 +172,12 @@ async function handleForgotPassword() {
         await sendPasswordResetEmail(email);
         vibrateOnSuccess();
         showNoticeModal('exclamation', 'A password reset link has been sent to your email account.', 'Continue');
+        vibrateOnSuccess();
     } catch (error) {
         console.error('Password reset error:', error);
         vibrateOnError();
         showError(getFriendlyAuthError(error, 'Could not send the reset link. Please try again.'), 'login-message', 'login-button');
+        vibrateOnError();
     }
 }
 
@@ -191,11 +196,14 @@ async function finishPasswordChange() {
 function showPasswordChangedModal() {
     vibrateOnSuccess();
     showNoticeModal('check', 'Good Job! Your password has been changed successfully.', 'Go to Login', finishPasswordChange);
+    vibrateOnSuccess();
 }
 
 // Supabase refuses a new password equal to the current one (error code same_password).
 function showCurrentPasswordModal() {
+    vibrateOnError();
     showConfirmModal('door', 'You entered your current password. Do you wish to keep it?', showPasswordChangedModal, returnToChangePasswordForm);
+    vibrateOnSuccess();
 }
 
 function handlePasswordChangeError(error) {
@@ -217,6 +225,7 @@ async function handleChangePassword() {
     if (problem) {
         vibrateOnError();
         showError(problem, 'change-password-message', 'change-password-button');
+        vibrateOnError();
         return;
     }
 
@@ -238,6 +247,7 @@ async function handleLogout() {
         await playLoadingScreen('Logging out', signOutOfSupabase, 'Logged out successfully', playLogoutSound);
         vibrateOnSuccess();
         showLoginSection();
+        vibrateOnSuccess();
     } catch (error) {
         console.error('Logout error:', error);
         switchScreen('dashboard', '.screen');
