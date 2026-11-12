@@ -23,8 +23,8 @@ function waitMs(milliseconds) {
 function openLoadingScreen(message) {
     closeModal();
     setLoadingMessage(message);
-    resetLoadingProgress();
     switchScreen('loading-screen', '.screen');
+    resetLoadingProgress();
     startLoadingTune();
     setLoadingProgress(LOADING_CREEP_PERCENT, LOADING_MIN_MS);
 }
