@@ -49,13 +49,14 @@ function isModalOpen() {
 
 function playModalSound(iconName) {
     if (iconName !== 'check') return;
-    playSuccessSound();
     vibrateOnSuccess();
+    playSuccessSound();
 }
 
 // One button. Pressing Enter also presses it (see keyboard.js).
 function showNoticeModal(iconName, message, buttonLabel, onContinue) {
     openModal(iconName, message, [{ label: buttonLabel, kind: 'primary', onClick: onContinue }]);
+    vibrateOnSuccess();
     playModalSound(iconName);
 }
 
