@@ -22,7 +22,7 @@ function showExpiredLinkNotice() {
 async function showVerifiedAccountNotice() {
     await signOutQuietly();
     showLoginSection();
-    showNoticeModal('check', 'Good Job! Your account has been created successfully.', 'Continue', vibrateOnSuccess());
+    showNoticeModal('check', 'Good Job! Your account has been created successfully.', 'Continue', vibrateOnSuccess);
 }
 
 function routeAfterInitialLoading(session) {
