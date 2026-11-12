@@ -137,6 +137,7 @@ async function handleLogin() {
 
     try {
         const result = await playLoadingScreen('Logging in', function () {
+            vibrateOnSuccess();
             return signInWithPassword(inputs);
         }, 'Logged in successfully', playSuccessSound);
 
